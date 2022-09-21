@@ -1,5 +1,3 @@
-package orderbook;
-
 import java.util.Comparator;
 
 public class SellOrderStorage extends OrderStorage {

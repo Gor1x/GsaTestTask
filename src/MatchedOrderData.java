@@ -1,5 +1,3 @@
-package orderbook;
-
 import java.util.Objects;
 
 public class MatchedOrderData {

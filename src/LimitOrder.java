@@ -1,5 +1,3 @@
-package orders;
-
 public class LimitOrder extends Order {
     private int quantityForTrade;
 

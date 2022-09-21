@@ -1,8 +1,3 @@
-// (c) GSA Capital
-
-import orderbook.*;
-import orders.IcebergOrder;
-import orders.LimitOrder;
 import org.junit.Before;
 import org.junit.Test;
 

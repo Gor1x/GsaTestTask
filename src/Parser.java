@@ -1,7 +1,3 @@
-package util;
-
-import orders.*;
-
 public class Parser {
     public Order parseLine(String input) {
         // We won't check if input is null on purpose

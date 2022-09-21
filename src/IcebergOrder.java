@@ -1,5 +1,3 @@
-package orders;
-
 public class IcebergOrder extends Order {
     private final int peakSize;
     private int hiddenVolume;

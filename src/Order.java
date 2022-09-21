@@ -1,5 +1,3 @@
-package orders;
-
 public abstract class Order {
     private final int id;
     private final short price;

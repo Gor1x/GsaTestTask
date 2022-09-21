@@ -1,5 +1,3 @@
-package helpers;
-
 import java.util.Objects;
 
 public class Pair<A, B> {

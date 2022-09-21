@@ -1,9 +1,3 @@
-import orderbook.BuyOrderStorage;
-import orderbook.OrderBook;
-import orderbook.SellOrderStorage;
-import util.Parser;
-import util.Printer;
-
 import java.util.Scanner;
 
 public class SETSOrderBookExercise {

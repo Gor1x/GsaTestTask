@@ -1,9 +1,4 @@
-// (c) GSA Capital
-
-import orders.IcebergOrder;
-import orders.LimitOrder;
 import org.junit.Test;
-import util.Parser;
 
 import static org.junit.jupiter.api.Assertions.*;
 

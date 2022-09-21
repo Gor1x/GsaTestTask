@@ -1,8 +1,4 @@
-// (c) GSA Capital
-
-import orders.LimitOrder;
 import org.junit.Test;
-import util.Printer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

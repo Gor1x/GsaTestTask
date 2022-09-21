@@ -1,7 +1,3 @@
-package orderbook;
-
-import orders.*;
-
 public class OrderBookEntry {
     // To simplify an implementation of this task I won't use real timestamps
     private static int TIME_VALUE = 0;
