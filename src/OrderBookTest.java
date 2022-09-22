@@ -1,5 +1,5 @@
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class OrderBookTest {
     public SellOrderStorage sellOrderStorage;
     OrderBook book;
 
-    @Before
+    @BeforeEach
     public void setup() {
         buyOrderStorage = new BuyOrderStorage();
         sellOrderStorage = new SellOrderStorage();

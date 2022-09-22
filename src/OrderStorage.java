@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.TreeSet;
@@ -6,7 +7,12 @@ public class OrderStorage {
     private final TreeSet<OrderBookEntry> orders;
 
     public List<Order> getOrdersList() {
-        return orders.stream().map(OrderBookEntry::getOrderData).toList();
+        List<Order> list = new ArrayList<>();
+        for (OrderBookEntry order : orders) {
+            Order orderData = order.getOrderData();
+            list.add(orderData);
+        }
+        return list;
     }
 
     public OrderStorage(Comparator<Short> priceComparator) {
