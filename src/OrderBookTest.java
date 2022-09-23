@@ -70,6 +70,21 @@ public class OrderBookTest {
 
 
     @Test
+    public void checkAfterAggressiveIcebergOrderEntryTradingAmountIsCorrect() {
+        // Arrange
+        var buyLimitOrder1 = limitEntry(1, 100, 225, 'B');
+        buyOrderStorage.add(buyLimitOrder1);
+
+        // Act
+        IcebergOrder icebergOrder = new IcebergOrder(2, (short) 100, 350, 100, 'S');
+        var data = book.addOrder(icebergOrder);
+
+        // Assert
+        assertEquals(100, icebergOrder.getTradeAmount());
+        assertEquals(List.of(new MatchedOrderData(1, 2, (short) 100, 225)), data);
+    }
+
+    @Test
     public void passiveIcebergExecution() {
         // Arrange
         IcebergOrder iceOrder1 = new IcebergOrder(1, (short) 100, 50000, 10000, 'B');
