@@ -22,7 +22,7 @@ public class OrderBookEntry {
         orderData.notifyTraded(tradeVolume);
         if (orderData instanceof IcebergOrder asIcebergOrder) {
             if (orderData.getTradeAmount() == 0 && asIcebergOrder.hasHiddenVolume()) {
-                asIcebergOrder.refreshPeak();
+                asIcebergOrder.refreshPeakSafe();
                 numberAdded = getNextTimeValue();
             }
         }
