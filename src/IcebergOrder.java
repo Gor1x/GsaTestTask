@@ -18,7 +18,19 @@ public class IcebergOrder extends Order {
         quantityForTrade -= quantity;
     }
 
-    public void refreshPeak() {
+    public void notifyAggressiveOrder(int aggressiveOrderId) {
+        if (getId() == aggressiveOrderId) {
+            refreshPeak();
+        }
+    }
+
+    private void refreshPeak() {
+        hiddenVolume += getTradeAmount();
+        quantityForTrade = Math.min(peakSize, hiddenVolume);
+        hiddenVolume -= quantityForTrade;
+    }
+
+    public void refreshPeakSafe() {
         if (getTradeAmount() != 0) {
             // This exception is left for testing purposes. It should never be called during real run
             throw new IllegalStateException("Refresh shouldn't be called when trade amount is not empty");
@@ -27,8 +39,7 @@ public class IcebergOrder extends Order {
             // This exception is left for testing purposes. It should never be called during real run
             throw new IllegalStateException("Hidden volume can't be empty while refreshing peak");
         }
-        quantityForTrade = Math.min(peakSize, hiddenVolume);
-        hiddenVolume -= quantityForTrade;
+        refreshPeak();
     }
 
     public boolean hasHiddenVolume() {

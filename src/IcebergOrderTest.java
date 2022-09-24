@@ -32,7 +32,7 @@ public class IcebergOrderTest {
         assertEquals(order.getTradeAmount(), 10);
         order.notifyTraded(7);
         assertEquals(order.getTradeAmount(), 3);
-        var exception = assertThrows(IllegalStateException.class, order::refreshPeak);
+        var exception = assertThrows(IllegalStateException.class, order::refreshPeakSafe);
         assertEquals(exception.getMessage(), "Refresh shouldn't be called when trade amount is not empty");
     }
 
@@ -42,7 +42,7 @@ public class IcebergOrderTest {
         var order = new IcebergOrder(13, (short) 27, 16, 10, 'B');
 
         order.notifyTraded(10);
-        order.refreshPeak();
+        order.refreshPeakSafe();
 
         assertFalse(order.hasHiddenVolume());
         assertEquals(order.getTradeAmount(), 6);
@@ -53,7 +53,7 @@ public class IcebergOrderTest {
         var order = new IcebergOrder(13, (short) 27, 10, 10, 'B');
 
         order.notifyTraded(10);
-        var exception = assertThrows(IllegalStateException.class, order::refreshPeak);
+        var exception = assertThrows(IllegalStateException.class, order::refreshPeakSafe);
         assertEquals(exception.getMessage(), "Hidden volume can't be empty while refreshing peak");
     }
 
@@ -70,9 +70,9 @@ public class IcebergOrderTest {
         var order = new IcebergOrder(13, (short) 27, 17, 8, 'B');
 
         order.notifyTraded(8);
-        order.refreshPeak();
+        order.refreshPeakSafe();
         order.notifyTraded(8);
-        order.refreshPeak();
+        order.refreshPeakSafe();
         assertEquals(1, order.getTradeAmount());
     }
 

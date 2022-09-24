@@ -20,10 +20,11 @@ public class OrderBook {
         } else {
             sellOrders.add(entry);
         }
-        return getMatches();
+        var newOrderId = order.getId();
+        return getMatches(newOrderId);
     }
 
-    private List<MatchedOrderData> getMatches() {
+    private List<MatchedOrderData> getMatches(int lastOrderId) {
         var storage = new MatchedOrderDataStorage();
 
         boolean shouldTakeSellPrice = true;
@@ -45,7 +46,14 @@ public class OrderBook {
             int tradeVolume = Math.min(buyVolume, sellVolume);
 
             buyOrder.notifyVolumeTraded(tradeVolume);
+            if (buyOrder.getOrderData() instanceof IcebergOrder) {
+                ((IcebergOrder) buyOrder.getOrderData()).notifyAggressiveOrder(lastOrderId);
+            }
+
             sellOrder.notifyVolumeTraded(tradeVolume);
+            if (sellOrder.getOrderData() instanceof IcebergOrder) {
+                ((IcebergOrder) sellOrder.getOrderData()).notifyAggressiveOrder(lastOrderId);
+            }
 
             short price = shouldTakeSellPrice ? sellOrder.getOrderData().getPrice() : buyOrder.getOrderData().getPrice();
             storage.add(buyOrder.getOrderData().getId(), sellOrder.getOrderData().getId(), price, tradeVolume);
